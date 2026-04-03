@@ -77,47 +77,61 @@ pip install -r requirements.txt
 
 ### Bước 1: Tạo dự án Supabase
 
-1. Truy cập [supabase.com](https://supabase.com) và đăng nhập.
-2. Nhấn "New project".
-3. Điền thông tin:
-   - **Name:** Tên dự án (ví dụ: "Messenger App")
-   - **Database Password:** Đặt mật khẩu mạnh
-   - **Region:** Chọn region gần nhất
-4. Nhấn "Create new project" và chờ khởi tạo (có thể mất vài phút).
+1. Mở trình duyệt và truy cập [supabase.com](https://supabase.com).
+2. Nếu chưa có tài khoản, nhấn "Sign up" để đăng ký. Nếu đã có, nhấn "Sign in" để đăng nhập.
+3. Sau khi đăng nhập, bạn sẽ thấy trang dashboard chính. Ở góc trên bên phải, nhấn nút màu xanh dương có chữ "New project".
+4. Trong form tạo dự án:
+   - **Name:** Nhập tên dự án, ví dụ: "Messenger App"
+   - **Database Password:** Nhập mật khẩu mạnh cho database (ít nhất 8 ký tự, bao gồm chữ hoa, chữ thường, số).
+   - **Region:** Chọn region gần nhất với vị trí của bạn từ dropdown (ví dụ: "US East (N. Virginia)" hoặc "EU West (Ireland)").
+5. Nhấn nút "Create new project" ở cuối form.
+6. Chờ Supabase khởi tạo dự án (thường mất 2-3 phút). Bạn sẽ thấy thanh tiến trình và thông báo khi hoàn thành.
 
 ### Bước 2: Thiết lập Database
 
-1. Trong dashboard Supabase, chọn tab "SQL Editor".
-2. Sao chép nội dung file `schema.sql` và dán vào SQL Editor.
-3. Nhấn "Run" để thực thi schema.
+1. Sau khi dự án được tạo, bạn sẽ được chuyển đến dashboard của dự án.
+2. Ở sidebar bên trái (menu điều hướng), cuộn xuống và chọn tab "SQL Editor" (biểu tượng hình bảng tính hoặc chữ "SQL").
+3. Trong trang SQL Editor, bạn sẽ thấy một ô text lớn để nhập SQL.
+4. Mở file `schema.sql` trong thư mục dự án của bạn bằng một editor (như VS Code, Notepad++).
+5. Sao chép toàn bộ nội dung file `schema.sql` (từ đầu đến cuối).
+6. Dán nội dung vào ô SQL trong Supabase.
+7. Ở cuối trang, nhấn nút màu xanh "Run" (hoặc "Execute") để thực thi SQL.
+8. Nếu thành công, bạn sẽ thấy thông báo "Success" và các bảng sẽ được tạo.
 
 ### Bước 3: Tạo Storage Bucket
 
-1. Chọn tab "Storage" trong dashboard.
-2. Nhấn "Create bucket".
-3. Đặt tên: `files`
-4. Chọn "Public bucket" nếu muốn file có thể truy cập công khai.
-5. Nhấn "Create bucket".
+1. Trong dashboard dự án, ở sidebar bên trái, chọn tab "Storage" (biểu tượng hình đám mây hoặc chữ "Storage").
+2. Ở trang Storage, nhấn nút "Create bucket" (thường ở góc trên bên phải hoặc giữa trang).
+3. Trong popup hoặc form xuất hiện:
+   - **Name:** Nhập `files` (chính xác như vậy, không có dấu cách).
+   - **Public bucket:** Đánh dấu chọn checkbox này nếu bạn muốn file có thể truy cập công khai (khuyến nghị cho MVP).
+4. Nhấn nút "Create bucket" để hoàn thành.
 
 ### Bước 4: Lấy API Keys
 
-1. Chọn tab "Settings" > "API".
-2. Sao chép:
-   - **Project URL**
-   - **anon public** key
+1. Trong dashboard dự án, ở sidebar bên trái, chọn tab "Settings" (biểu tượng hình bánh răng).
+2. Trong trang Settings, chọn mục "API" từ menu con bên trái (hoặc danh sách các tab).
+3. Trong phần "Project API keys":
+   - Tìm trường "Project URL" và sao chép giá trị (ví dụ: `https://abcdefghijklmnop.supabase.co`).
+   - Tìm trường "anon public" và sao chép giá trị (đây là một chuỗi dài ký tự).
 
 ### Bước 5: Cấu hình file .env
 
-1. Sao chép file `.env.example` thành `.env`:
+1. Mở terminal/command prompt và điều hướng đến thư mục dự án:
+   ```bash
+   cd /path/to/messenger-app
+   ```
+2. Sao chép file `.env.example` thành `.env`:
    ```bash
    cp .env.example .env
    ```
+3. Mở file `.env` bằng editor (ví dụ: `nano .env`, `code .env`, hoặc Notepad).
+4. Thay thế các giá trị placeholder:
+   - Thay `your_supabase_project_url` bằng Project URL bạn vừa sao chép từ bước 4.
+   - Thay `your_supabase_anon_key` bằng anon public key từ bước 4.
+5. Lưu file và đóng editor.
 
-2. Mở file `.env` và điền thông tin:
-   ```
-   SUPABASE_URL=https://your-project-id.supabase.co
-   SUPABASE_ANON_KEY=your-anon-key-here
-   ```
+**Lưu ý:** Đừng commit file `.env` lên GitHub vì nó chứa thông tin nhạy cảm. File này đã được thêm vào `.gitignore`.
 
 ## Chạy ứng dụng
 
