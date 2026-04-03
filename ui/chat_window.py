@@ -10,7 +10,7 @@ class ChatWindow(ctk.CTk):
         self.user = user
         self.messaging = Messaging(user.id)
         self.file_transfer = FileTransfer(user.id)
-        self.other_user_id = "some_other_user_id"  # For MVP, assume chatting with one user
+        self.other_user_id = "12345678-1234-5678-9012-123456789012"  # For MVP, assume chatting with one user
 
         self.title("Chat - Messenger")
         self.geometry("600x500")

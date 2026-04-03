@@ -23,7 +23,8 @@ class Messaging:
     def get_chat_history(self, other_user_id: str) -> List[Dict]:
         try:
             response = supabase.table('messages').select('*').or_(
-                f"and(sender_id.eq.{self.current_user_id},receiver_id.eq.{other_user_id}),and(sender_id.eq.{other_user_id},receiver_id.eq.{self.current_user_id})"
+                f"sender_id.eq.{self.current_user_id},receiver_id.eq.{other_user_id}",
+                f"sender_id.eq.{other_user_id},receiver_id.eq.{self.current_user_id}"
             ).order('created_at').execute()
             return response.data
         except Exception as e:
