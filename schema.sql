@@ -1,7 +1,3 @@
--- Enable RLS
-ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
-ALTER TABLE file_metadata ENABLE ROW LEVEL SECURITY;
-
 -- Messages table
 CREATE TABLE messages (
     id UUID DEFAULT gen_random_uuid() PRIMARY KEY,
@@ -20,6 +16,10 @@ CREATE TABLE file_metadata (
     file_url TEXT NOT NULL,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
+
+-- Enable RLS
+ALTER TABLE messages ENABLE ROW LEVEL SECURITY;
+ALTER TABLE file_metadata ENABLE ROW LEVEL SECURITY;
 
 -- Indexes
 CREATE INDEX idx_messages_sender_receiver ON messages(sender_id, receiver_id);
